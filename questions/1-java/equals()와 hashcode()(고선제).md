@@ -1,0 +1,312 @@
+# equals()와 hashcode()에 대해서 설명해주세요.
+## equals()와 hashcode()
+
+- 자바의 모든 객체는 Object클래스를 상속받고 있는데, equals()와 hashcode()는 Object클래스에 정의되어 있는 메소드이다. 때문에, 모든 객체는 equals()와 hashcode()를 상속받고 있다.
+
+# 1. equals()
+
+### 1) equals()란?
+
+```java
+public boolean equals(Object obj) {
+    return (this == obj);
+} 
+```
+
+→ 일반적으로 Object클래스의 equals()는 위와 같이 정의되어 있다.
+
+- 모든 객체는 위에 작성된 equals()를 상속받기에 반환하는 값인 “this == obj”를 보면 기본적으로 2개의 객체가 동일한지 검사하기 위해 사용된다고 볼 수 있다. 즉, 동일성(identity)을 비교하고 있다.
+- 객체가 동일하다는 것은, 객체가 참조하는 것 즉 객체가 가리키는 곳인 메모리 주소가 같다는 것을 의미한다.
+
+### 2) equals()의 Overriding
+
+```java
+String test1 = new String("Test");
+String test2 = new String("Test");
+```
+
+- 위 코드와 같이 같은 값을 가지고 있는 객체가 여러 개 생성된 경우가 있다. 두 객체는 값은 같지만, 서로 다른 메모리 주소를 가지고 있기에 동일한 객체가 아니다.
+- 하지만, 프로그래밍을 할 때 메모리의 주소 비교보다는 같은 값을 지닌지의 여부를 확인하고 싶은 경우가 더 많다. 그래서 우리는 객체의 메모리 주소가 아닌 값으로 객체를 비교하도록 equals()를 Overriding 해줘야 한다. 즉, 동등성(equality)을 비교하도록 바꾸는 것이다.
+
+```java
+System.out.println(test1 == test2);			// false
+System.out.println(test1.equals(test2));		// true;
+```
+
+→ 위 구문은 String 객체인 s1, s2를 ‘==’와 equals()를 이용하여 객체비교를 하고있다.
+
+- 분명 String클래스는 Object를 상속받아 equals()를 사용하는 것인데, equals()의 내부를 봤을 때에는 ‘==’ 를 사용하고 있었다. 하지만 두 구문은 다른 결과 값을 반환하고 있다.
+- 위 이유는 String클래스가 상속받은 equals()를 값 비교를 하도록 overriding하고 있기 때문이다.
+
+- 우리가 만든 클래스도 equals()를 Overriding해서 값을 비교하게 할 수 있다.
+
+```java
+class Person {
+	private static final String name;
+
+	public Person(String name) {
+		this.name = name;
+	}
+}
+```
+
+→ 위 Person클래스는 생성자를 정의해주면서 인스턴스를 생성할 때 name을 초기화 해준다.
+
+```java
+Person person1 = new Person("Kyu");
+Person person2 = new Person("Kyu");
+
+System.out.println(person1 == person2); //false
+System.out.println(person1.equals(person2)); //false
+```
+
+- Person클래스로 두 개의 인스턴스를 생성해서 ‘==’와 equals()를 이용해 객체를 비교하면 String 클래스와는 다르게 둘 다 false를 반환한다. 이유는 두 개 모두 메모리 주소를 비교하고 있기 때문이다.
+
+- equals()를 overriding 하여 name 값이 일치한지 바꿔야한다.
+
+```java
+@Override
+public boolean equals(Object obj) {
+  if(obj instanceof Person){
+	return this.name.equals(((Person)obj).name);
+}
+  return false;
+    }
+```
+
+→ 위 코드로 Overriding하면
+
+```java
+System.out.println(person1 == person2); //false
+System.out.println(person1.equals(person2)); //true
+```
+
+→ 위의 결과 값이 나온다.
+
+- equals() overriding 조건
+    - 재귀 : x.equals(x)
+    - 대칭 : x.equals(y), y.equals(x)
+    - 타동적 : x.equals(y), y.equals(z), x.equals(z)
+    - 일관 : x.equals(y) * n
+    - null과 비교 : x.equals(null)
+
+# 2. hashcode()
+
+### 1) hashcode()란?
+
+```java
+public native int hashcode();
+```
+
+→ Object클래스에 hashcode는 위와 같이 정의되어 있다.
+
+- 일반적으로 Object클래스의 hashcode()는 heap에 저장된 객체의 메모리 주소 값을 이용해여 hasing기법을 통해 해시코드를 만들어 반환한다. 주소 값으로 만든 고유한 숫자값이라고 볼 수 있다.
+- hashcode는 HashTable과 같은 자료구조를 사용할 때 데이터가 저장되는 위치를 결정하기 위해 사용된다.
+
+# 3. equals()와 hashcode()
+
+- equals()를 overriding를 하여 동등한 두 객체가 놓여져 있다면, 우리는 같은 객체라고 생각할 것이다.
+- 하지만 아래와 같이 우리가 HashSet자료구조를 사용한다고 가정하자.
+
+```java
+public static void main(String[] args) {
+    Set<Person> Persons = new HashSet<>();
+    Persons.add(new Person("KO"));
+    Persons.add(new Person("KO"));
+
+    System.out.println(cars.size());
+}
+```
+
+→ Set의 특성상 중복되는 것은 한번만 저장한다. 그렇다면 위의 출력 결과는 1이 나올 것이다. 하지만 결과는 2가 출력된다.
+
+- 위와 같은 이유는 HashSet, HashMap, HashTable들은 hash값을 사용하기 때문이다.
+- 위 세 개의 Collection은 객체가 논리적으로 같은지 비교할 때 hashcode()의 리턴 값이 일치하는지 1순위로 확인한다. 다음으로 equals()의 리턴 값이 true인지 확인한다. 두 가지 조건 모두 만족하면 동등 객체로 판단하는 것이다.
+- 그래서 위 HashSet이 객체가 동등한지 판단할 때 equals()로 판단하기도 전에 hashcode()의 리턴값이 일치하지 않아 다른 객체로 판단한 것이다.
+
+### Hashcode()의 overriding
+
+- 위와 같은 문제때문에 equals를 overriding해주면 항상 hashcode()도 같이 overriding해줘야 한다.
+
+```java
+@Override
+public int hashcode() {
+    return Objects.hash(name); // name 필드의 해시코드를 반환한다.
+}
+```
+
+→ Person클래스의 hashcode()를 overriding 한것이다.
+
+→ Person클래스의 필드인 name의 해쉬코드를 반환하도록 재정의 한 것이다. name의 값이 같다면, 해쉬코드도 일치할 것이다.
+
+### hash를 이용한 Collection을 사용하지 않는다면?
+
+- 물론 Hash를 이용한 Collection을 절대 사용하지 않을 자신이 있으면 hashcode()를 overriding을 하지 않아도 된다고 생각한다. 하지만 코드를 작성하다 보면 요구사항은 항상 변하기에 굳이 위험을 안으면서 overriding을 하지 않은 것은 바람직하지 않다고 본다. 그렇기에 내 생각은 equals()를 overriding해주면 항상 hashcode()를 overriding해줘야 한다고 생각한다.
+
+---
+# 사전 지식
+## Object클래스
+
+- 자바의 최상위 부모 클래스
+- 필드가 없고 메소드로 구성되어 있다.
+- 모든 클래스들은 Object클래스를 상속하므로, 모든 클래스에서 Object의 메소드를 사용할 수 있다.
+
+## 상속
+
+- 부모 클래스의 필드와 메소드를 물려받는 것.
+- 여러 클래스를 상속받지 못한다. 단일상속만 가능하다.
+- 반대로 부모는 여러 자식 클래스에게 상속이 가능하다.
+- 자식클래스가 더 다양한 기능이 가능하므로 자식 클래스로 인스턴스를 생성하는 것이 효율적이다.
+- private접근 제한을 갖는 필드나 메소드는 물려받지 않는다.
+
+## 다형성
+
+- 하나의 객체가 여러 가지 타입을 가질 수 있는 것을 의미합니다.
+- 부모 클래스 타입의 참조 변수로 자식 클래스 타입의 인스턴스를 참조할 수 있도록 하여 구현하고 있다.
+
+```java
+class Parent { ... }
+
+class Child extends Parent { ... }
+
+...
+
+Parent pa = new Parent(); // 허용
+Child ch = new Child();   // 허용
+Parent pc = new Child();  // 허용
+Child cp = new Parent();  // 오류 발생.
+```
+
+## instanceof
+
+- 참조 변수가 실체로 참조하고 있는 인스턴스의 타입을 확인할 때 사용한다.
+
+```java
+참조변수 instanceof 클래스이름
+```
+
+## 함수와 메소드의 차이
+
+- 함수
+    - 하나의 특별한 목적의 작업을 수행하기 위해 독립적으로 설계된 코드의 지합
+    - 어디에도 속하지 않고, 단독 모듈이다.
+- 메소드란?
+    - 객체의 기능을 구현하기 위한 클래스 내부에 구현되는 함수.
+    - 멤버 함수
+    - 메소드를 구현하면 객체의 기능을 구현하는 거다.
+
+## 참조
+
+- 참조라는 것은 메모리 주소를 공유하고 있는 것이다.
+
+```java
+A a = new A();
+A b = a;
+```
+
+→ 메모리 주소를 공유하고 있기 때문에 b를 이용하여 객체 내부의 값을 바꾸면 a의 값도 변경된다.
+
+## 동일성과 동등성
+
+- 동일성은 메모리 주소까지 같은 완전히 같은 객체를 의미한다.
+- 동등성은 다른 객체지만 객체 내부에 가지고 있는 정보가 같음을 의미한다.
+
+## ==연산
+
+- 기본형 타입(primitive type)은 ==연산은 값을 비교한다.
+- 하지만 참조형 타입(reference type)은 메모리 주소 값을 비교한다.
+
+## 클래스, 객체, 인스턴스
+
+- 클래스란?
+    - 객체를 생성하기 위한 설계도
+    - 필드와 메소드로 이루어져 있다.
+    - 실행시 JVM메모리의 클래스 영역에 로드된다.
+- 객체란?
+    - 클래스가 메모리에 정의되면 그것이 객체이다.
+    - 자신만의 속성(필드)을 가지고 있다.
+- 인스턴스란?
+    - 클래스를 통해 생성된 객체 하나를 인스턴스라고 한다.
+    - heap 영역에 인스턴스가 생성된다. 실제 구현된 실체이다.
+
+## String=”” 과 new String(””)의 차이
+
+- String 리터럴로 생성
+    - java heap영역 내에 있는 String Contant Pool에 저장되어 재사용 된다.
+- new 연산자를 통해 생성
+    - java heap영역 내에 각각 자신만의 객체를 만들어 준다. 자신만의 공간을 만들어준다는 것이다.
+
+```java
+String st1 = "CAT";
+String st2 = "CAT";
+String st3 = new String("CAT");
+System.out.println(st1 == st2); //true
+System.out.println(st1 == st3); //false
+```
+
+- intern()
+    - new String(””).intern(); 를 통해 new연산자를 통해 만들어도 String Contant Pool에 저장할 수 있다.
+
+## JVM
+
+- Source Code(.java) → java Compiler → Byte Code(.Class)파일로 변환 (컴퓨터가 이해할 수 있는 코드)→ Class Loader
+- Class Loader
+    - Class 파일을 불러와 메모리에 저장하는 역할
+- Execution Engine
+    - Class Loader에 저장된 Byte Code를 명령어 단위로 분류하여 하나씩 실행하게 하는 엔진
+- Garbage Collector
+    - 사용하지 않는 객체들을 메모리에서 소멸시킴
+- Runtime Data Area(Memory Area)
+    - JVM이 프로그램을 수행하기 위해 운영체제로부터 할당받은 메모리 공간
+
+### 1)Memory Area구조
+
+- Method Area
+    - JVM이 실행되면서 생기는 공간
+    - Class 정보, 전역변수 정보, Static 변수 저장되는 공간
+    - Runtime Constant Pool이 존재하는데, ‘상수’가 저장
+- Heap
+    - new연산자로 생성된 객체, Array와 같은 동적으로 생성된 데이터가 저장되는 공간
+    - Reference Type의 데이터가 저장되는 공간
+- Stack
+    - 지역변수, 메소드의 매개변수와 같이 잠시 사용되고 필요가 없어지는 데이터가 저장되는 공간
+    - LIFO
+    - 지역변수 이지만 Reference Type일 경우 Heap에 저장된 데이터의 주소값을 Stack에 저장해서 사용
+- PC Register
+    - JVM이 실행하고 있는 현재 위치를 저장하는 역할
+    - 스레드가 생성되면서 생기는 공간
+- Native Method Stack
+    - Java가 아닌 다른 언어로 구성된 메소드를 실행이 필요할 때 사용되는 공간
+
+## native
+
+- 메소드가 JNI(Java Native Interface)라는 native code를 이용해 구현되었음을 의미한다.
+- native는 메소드에만 적용 가능한 제어자다.
+- java가 아닌 언어로 구현된 부분을 JNI를 통해 java에서 이용하고자 할 때 사용된다.
+
+## hasing기법
+
+- 해시 함수에 입력값을 넣어 특정한 값으로 추출하는 것을 의미한다.
+    - 해시함수
+        - 임의의 길이를 갖는 임의의 데이터를 고정된 길이의 데이터로 매핑하는 단방향 함수를 말함.
+        - 단방향 함수 :결과값을 역으로 입력값으로 바꿀수는 없다는 것.
+- 해싱 충돌
+    - 키 값을 해싱해서 얻은 값들이 모두 고유한 값이 아닐 수 있다. 이러한 경우에 해싱 충돌이라고 한다.
+
+## identityHashCode 메서드
+
+- 그래서 자바에서는 똑같이 해시코드를 반환해주는 또다른 메서드인 identityHashCode() 를 만들었다.
+- 즉, hashCode()를 오버라이딩 해서 쓰는데, 오버라이딩 하기 전의 원조 기능이 필요할때 사용 하는 메서드라고 보면 된다
+
+#### 자료조사 출처 표기
+
+- [equals()와 hashcode](https://mangkyu.tistory.com/101)
+- [equals() hashCode() 오버라이딩](https://velog.io/@kyukim/1-lpsstacu)
+- [equals() hashCode() 왜 같이 재정의해야 하는가?](https://tecoble.techcourse.co.kr/post/2020-07-29-equals-and-hashCode/)
+- [자바 상속](https://blog.naver.com/PostView.nhn?blogId=heartflow89&logNo=220960019390)
+- [함수와 메소드](https://hoestory.tistory.com/31)
+- [클래스, 객체, 인스턴스 차이](https://velog.io/@dongvelop/Java-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B0%9D%EC%B2%B4-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4)
+- [String=”” vs new String(””)의 차이](https://tomining.tistory.com/195)
+- [해싱이란?](https://velog.io/@bbaekddo/cs-3)
+- [다형성](http://www.tcpschool.com/java/java_polymorphism_concept)
+- [JVM](https://velog.io/@shin_stealer/%EC%9E%90%EB%B0%94%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0)
