@@ -6,13 +6,18 @@
 
 ## 핵심 스터디 결과물
 
-| 정리 자료|
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|[Java Code가 실행되는 과정에 대해서 설명해보세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/1.md)|
-|[GC 알고리즘의 종류에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/2.md)|
-|[equals()와 hashcode()에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/3.md)|
-|[interface와 abstract class차이에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/4.md)|
-|[LTS 버전인 Java 8,11,17,21의 주요 변경사항 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/5.md)|
+| 정리 자료                                                                                                                       |
+|:----------------------------------------------------------------------------------------------------------------------------|
+| [Java Code가 실행되는 과정에 대해서 설명해보세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/1.md)              |
+| [GC 알고리즘의 종류에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/2.md)                     |
+| [equals()와 hashcode()에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/3.md)            |
+| [interface와 abstract class에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/4.md)       |
+| [LTS 버전인 Java 8,11,17,21의 주요 변경사항 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/5.md) |
+| [Enum에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/6.md)                            |
+| [제너릭 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/7.md)                              |
+| [Map의 구현체들에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/8.md)                  |
+| [Stream에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/9.md)                    |
+| [Java에서 동시성 제어하는 방법들에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/1-java/10.md)            |
 ## 진행방식
 
 - 매주 각자 맡은 CS 질문에 대해서 최대한 관련 지식을 모두 학습, 정리합니다.
