@@ -32,10 +32,17 @@
 | [HTTP 요청이 들어왔을 때 요청을 받고 응답하기 까지의 전 과정을 설명해주세요.(Gopistol)](https://github.com/COW-edu/backend-cs-study/blob/main/questions/2-spring/6-5.md)  |
 | DB                                                                                                                                          |
 | [정규화의 개념과 장,단점을 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/1.md)                                   |
-| [join의 종류에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/2.md)                              |
-| [join의 동작 알고리즘에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/3.md)                    |
+| [join의 종류에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/2.md)                                    |
+| [join의 동작 알고리즘에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/3.md)                               |
 | [인덱스의 개념과 종류에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/4.md)                                 |
-| [인덱스를 설정하는 기준들에 대해 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/5.md)                                   |
+| [인덱스를 설정하는 기준들에 대해 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/5.md)                                |
+| [ORDER BY/GROUP BY 연산의 동작 과정을 인덱스의 존재여부와 연관지어서 설명해 주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/6.md)   |
+| [트랜잭션이 무엇이고, ACID 원칙에 대해 설명해 주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/7.md)                               |
+| [트랜잭션 격리 레벨에 대해 설명해 주세요..](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/8.md)                                 |
+| [InnoDB 기준, Undo 영역과 Redo 영역에 대해 설명해 주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/9.md)                                |
+| [트랜잭션 전파 방식에 대해서 설명해주세요](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/10.md)                               |
+| [DB Locking과 Optimistic Lock/Pessimistic Lock에 대해 설명해 주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/3-database/11.md)                               |
+
 
 ## 진행방식
 
