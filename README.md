@@ -48,6 +48,12 @@
 | [RESTful API에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/4.md)                                |
 | [동기/비동기 방식의 특징과 장단점에 대해서 설명해 주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/5.md)                        |
 | [쿠키와 세션 스토리지에 대해서 설명해주세요.](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/6.md)                                |
+| [크롬 주소창에 "www.google.com"을 치면 일어나는 일](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/7.md)                     |
+| [크롬 주소창에 "www.google.com"을 치면 일어나는 일](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/8.md)                     |
+| [크롬 주소창에 "www.google.com"을 치면 일어나는 일](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/9.md)                     |
+| [크롬 주소창에 "www.google.com"을 치면 일어나는 일](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/10.md)                    |
+| [크롬 주소창에 "www.google.com"을 치면 일어나는 일](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/11.md)                    |
+| [크롬 주소창에 "www.google.com"을 치면 일어나는 일](https://github.com/COW-edu/backend-cs-study/blob/main/questions/4-network-web/12.md)                    |
 
 
 ## 진행방식
