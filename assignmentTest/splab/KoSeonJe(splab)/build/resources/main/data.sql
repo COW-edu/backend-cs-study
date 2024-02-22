@@ -1,0 +1,1 @@
+insert into GROUP_TABLE(name) values ('고선제');
