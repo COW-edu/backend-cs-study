@@ -1,0 +1,9 @@
+<div style="border: 1px solid #ddd; padding: 20px; border-radius: 5px; margin: 0 auto; max-width: 500px; text-align: center;">
+  <div style="font-size: 24px; margin-bottom: 20px;"><span style="font-weight: bold; color: #6495ed;">SPLAB</span>에서 보낸 인증 링크입니다.</div>
+  <div style="font-size: 16px; margin-bottom: 20px;">
+    CONTENT<br>그룹 참여를 위해 아래의 링크를 클릭해주세요.
+    <div style="font-size: 12px; font-weight: bold; background-color: #eee; padding: 15px; text-align: center; border-radius: 5px; margin-top: 20px; display: flex; justify-content: center; align-items: center; width: fit-content; margin-left: auto; margin-right: auto;">
+      <span id="link-code" contenteditable="false">YOUR_INVITATION_LINK</span>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,14 @@
 package com.splab.invitation.domain.member.entity;
 
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum InvitationStatus {
   ACTIVATED("활성화"),
   PENDING("초대 발송 후 참여 대기");
 
-  private String status;
-  InvitationStatus(String status) {
-    this.status = status;
-  }
-
-  public String getStatus() {
-    return status;
-  }
+  private final String status;
 }

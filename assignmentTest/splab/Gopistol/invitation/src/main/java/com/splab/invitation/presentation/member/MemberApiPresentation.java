@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 public interface MemberApiPresentation {
 
   @Operation(summary = "멤버 초대")
-  public ApiResponse<String> invite(InviteMemberCommand command) throws NoSuchAlgorithmException;
+  public ApiResponse<Long> invite(InviteMemberCommand command);
 
   @Operation(summary = "초대 수락")
   public ApiResponse<Void> join(String email, String key);

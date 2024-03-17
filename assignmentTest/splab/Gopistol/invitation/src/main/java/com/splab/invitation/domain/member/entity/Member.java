@@ -26,7 +26,6 @@ public class Member extends BaseEntity {
   @Column(nullable = false, unique = true)
   private String email;
 
-
   @Enumerated(EnumType.STRING)
   private InvitationStatus status;
 
@@ -38,7 +37,7 @@ public class Member extends BaseEntity {
     this.status = status;
   }
 
-  public void updateStatus() {
+  public void activate() {
     this.status = InvitationStatus.ACTIVATED;
   }
 }
